@@ -6,7 +6,7 @@ export default function AddStudent() {
         roll: '',
         name: '',
         email: '',
-        mobile: '',
+        contact: '',
         address: '',
         gender: '',
       });
@@ -33,7 +33,7 @@ export default function AddStudent() {
             roll:'',
             name: '',
             email: '',
-            mobile: '',
+            contact: '',
             address: '',
             gender: '',
           });
@@ -59,7 +59,7 @@ export default function AddStudent() {
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
           />
@@ -72,9 +72,9 @@ export default function AddStudent() {
           />
           <input
             type="number"
-            name="mobile"
+            name="contact"
             placeholder="Mobile"
-            value={formData.mobile}
+            value={formData.contact}
             onChange={handleChange}
           />
           <input

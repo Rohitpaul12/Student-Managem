@@ -26,13 +26,13 @@ useEffect(()=>{
 
   return (
     data ? 
-    (<div>
-        <div className="roll">{data.roll}</div>
-        <div className="name">{data.name}</div>
-        <div className="email">{data.email}</div>
-        <div className="contact">{data.contact}</div>
-        <div className="address">{data.address}</div>
-        <div className="gender">{data.gender}</div>
+    (<div className='view-student'>
+        <div className="roll">Roll.No:<span>{data.roll}</span></div>
+        <div className="name"> Name:<span>{data.name}</span></div>
+        <div className="email">Email:<span>{data.email}</span></div>
+        <div className="contact">Contact:<span>{data.contact}</span></div>
+        <div className="address">Address:<span>{data.address}</span></div>
+        <div className="gender">Gender:<span>{data.gender}</span></div>
     </div>
     ):
     (<div>loading</div>)

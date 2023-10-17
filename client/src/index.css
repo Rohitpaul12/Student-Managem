@@ -108,3 +108,16 @@ code {
 .student-el:nth-child(even){
   background: #94ffb9;
 }
+.view-student{
+  margin: 0 auto;
+  width: 60%;
+  
+}
+.view-student>div{
+  color: #999999;
+}
+.view-student>div span{
+  margin-left: 10px;
+  color: black;
+
+}
