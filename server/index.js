@@ -14,8 +14,10 @@ app.get("/",(req,res)=>{
     res.send('hellow') 
 })
 
+const authRouter = require('./routes/userRoutes.js')
+app.use('/student',authRouter);
 const studentRouter = require('./routes/studentRoutes.js')
-app.use('/student',studentRouter);
+app.use('/auth',studentRouter);
 
 
 // student name , student id email, contact , address,gender,
