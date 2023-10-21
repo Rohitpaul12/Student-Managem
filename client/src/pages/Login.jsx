@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [formData, setFormData] = useState({
-    username:'',
+    email:'',
     password:''
   });
-
+  
+  const navigator = useNavigate()
   const [isLoading, setIsLoading] = useState(false); 
 
   const handleChange = (e) => {
@@ -21,13 +24,14 @@ export default function Login() {
     setIsLoading(true); 
 
     try {
-      const response = await axios.post('http://localhost:4000/auth/login', formData)
-      .then(()=>{
-        localStorage.setItem('user',response)
+      await axios.post('http://localhost:4000/auth/login', formData)
+      .then((response)=>{
+        localStorage.setItem('user',JSON.stringify(response.data))
+        navigator('/')
       })
 
       setFormData({
-       username:'',
+       email:'',
        password:''
       });
 
@@ -43,9 +47,9 @@ export default function Login() {
     <form onSubmit={handleSubmit} className="add-student">
       <input
         type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
+        name="email"
+        placeholder="email"
+        value={formData.email}
         onChange={handleChange}
       />
       <input

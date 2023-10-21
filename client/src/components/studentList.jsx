@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function StudentList() {
+    // delared a state to srore all data
     const [allStudent,setAllStudent]=useState([]);
     const navigator = useNavigate()
+
     async function fetchAll (){
 
-        const response = await axios
+        const response = await axios //http request using axios
         .get(`http://localhost:4000/student`)
         .then(response => {
           setAllStudent(response.data);
@@ -29,12 +31,10 @@ export default function StudentList() {
             console.log({error:err});
         }
     }
+
     useEffect(()=>{
         fetchAll();
     },[])
-    useEffect(()=>{
-        console.log(allStudent);
-      },[allStudent])
   return (
     <>
     <div className="add-btn-container">
@@ -43,7 +43,9 @@ export default function StudentList() {
     </Link>
     </div>
     <div className='all-student'>
-        {allStudent.map((data)=>(
+        {
+        allStudent?
+        (allStudent.map((data)=>(
             <div className='student-el' key={data._id}>
                 <div className="roll">{data.roll}</div>
                 <Link to={`/student/${data.roll}`} className="name">{data.name}</Link>
@@ -58,7 +60,12 @@ export default function StudentList() {
                     </svg>
                 </div>
             </div>
-        ))}
+        )))
+        :
+        (
+            <div>Loading...</div>
+        )
+        }
     </div>
     </>
   )

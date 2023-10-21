@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 // import * as bcrypt from 'bcrypt'
 const validator = require('validator');
 
@@ -38,9 +38,9 @@ userSchema.statics.login= async function(email,password){
         throw Error("Incorrect Email");
     }
 
-    const match = await bcrypt.compare(password,user.password)
+    // const match = await bcrypt.compare(password,user.password)
 
-    if(!match){
+    if(!(password == user.password)){
         throw Error("Incorrect Password")
     }
     console.log("login");
@@ -76,10 +76,10 @@ userSchema.statics.signup= async function(name,email,password){
     if(exists){
         throw Error("Email Already Exists");
     }
-    const salt = await bcrypt.genSalt(12);
-    const hash = await bcrypt.hash(password,salt);
+    // const salt = await bcrypt.genSalt(12);
+    // const hash = await bcrypt.hash(password,salt);
 
-    const user = await this.create({name, email, password: hash});
+    const user = await this.create({name, email, password: password});
     return user
 
 }

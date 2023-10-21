@@ -1,4 +1,5 @@
 const Student = require('../models/studentModel')
+// get all student
 const getAllStudent = async (req,res)=>{
     try {
         const allStudent = await Student.find()
@@ -7,6 +8,7 @@ const getAllStudent = async (req,res)=>{
         console.log("err in allstudent");
     }
 }
+//get one student
 const getStudent = async(req,res)=>{
     try {
         const roll = req.params['roll']
@@ -16,6 +18,7 @@ const getStudent = async(req,res)=>{
         console.log("err");
     }
 }
+//create  a student
 const addStudent = async (req,res)=>{
     let {roll,name,email,contact,address,gender} = req.body
     try {
@@ -32,6 +35,7 @@ const addStudent = async (req,res)=>{
         // res.status(409).json({"error":"Student"})
     }
 }
+// delete a student
 const deletStudent = async(req,res)=>{
     try {
         const {roll} = req.body
@@ -41,6 +45,7 @@ const deletStudent = async(req,res)=>{
         console.log("err");
     }
 }
+// update studnt
 const updateStudent = async (req, res) => {
     const { roll, name, email, contact, address, gender } = req.body;
   

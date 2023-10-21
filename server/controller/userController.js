@@ -1,9 +1,9 @@
 // const user = require('../models/user');
-const Users = require('../models/user');
+const Users = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
 function craeteToken(id){
-    return jwt.sign({id},process.env.ACCESS_TOKEN,{expiresIn:'3d'});
+    return jwt.sign({id},"hello,rohit",{expiresIn:'3d'});
 }
 
 const loginUser = async (req,res) => {
@@ -26,7 +26,7 @@ const signupUser = async (req,res) => {
     // console.log(req.body);
     const {name,email,password} = req.body
 
-    const token = craeteToken(user._id);
+    const token = craeteToken(Users._id);
     try{
         const user = await Users.signup(name,email,password);
         res.status(200).json({name,email,token})

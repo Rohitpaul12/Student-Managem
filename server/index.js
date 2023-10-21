@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 const cors = require('cors');
-app.use(cors({ origin: ['http://localhost:3000'] }));
+app.use(cors({ origin: ['http://localhost:3000','http://192.168.1.36:3000/'] }));
 
 const URI='mongodb+srv://paulrohit791:kBRCX0I5jKJBJIBv@cluster0.ysrklfl.mongodb.net/'
 
@@ -15,9 +15,9 @@ app.get("/",(req,res)=>{
 })
 
 const authRouter = require('./routes/userRoutes.js')
-app.use('/student',authRouter);
+app.use('/auth',authRouter);
 const studentRouter = require('./routes/studentRoutes.js')
-app.use('/auth',studentRouter);
+app.use('/student',studentRouter);
 
 
 // student name , student id email, contact , address,gender,

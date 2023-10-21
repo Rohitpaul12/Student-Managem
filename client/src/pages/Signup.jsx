@@ -1,9 +1,12 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
+    const navigator = useNavigate()
     const [formData, setFormData] = useState({
         name:'',
-        username:'',
+        email:'',
         password:''
       });
     
@@ -22,14 +25,15 @@ export default function Signup() {
         setIsLoading(true); 
     
         try {
-          const response = await axios.post('http://localhost:4000/auth/signup', formData)
-          .then(()=>{
-            localStorage.setItem('user',response)
+          await axios.post('http://localhost:4000/auth/signup', formData)
+          .then((response)=>{
+            localStorage.setItem('user',JSON.stringify(response.data))
+            navigator('/')
           })
     
           setFormData({
             name:'',
-            username:'',
+            email:'',
             password:''
           });
     
@@ -52,9 +56,9 @@ export default function Signup() {
           />
           <input
             type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
+            name="email"
+            placeholder="email"
+            value={formData.email}
             onChange={handleChange}
           />
         
